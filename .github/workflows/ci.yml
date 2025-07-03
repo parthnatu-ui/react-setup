@@ -26,7 +26,7 @@ jobs:
       - name: Set up Node.js # Step 2: Set up Node.js environment
         uses: actions/setup-node@v4 # Uses a pre-built action to set up Node.js
         with:
-          node-version: '18' # Specify the Node.js version to use (e.g., '18', '20.x', or 'lts/*')
+          node-version: '20.x' # Specify the Node.js version to use (e.g., '18', '20.x', or 'lts/*')
           cache: 'npm' # Caches npm dependencies to speed up subsequent runs
           cache-dependency-path: '**/package-lock.json' # Specifies the lock file for caching
 
