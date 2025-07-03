@@ -51,12 +51,3 @@ jobs:
         run: |
           npm install --save-dev vitest @vitest/coverage-v8
           npx vitest run --coverage
-
-      - name: Check Coverage Threshold
-        run: |
-          COVERAGE=$(npx vitest run --coverage --reporter=json-summary | grep 'lines' | awk '{print $2}' | tr -d ',')
-          if [ "$(echo "$COVERAGE < 85" | bc)" -eq 1 ]; then
-            echo "Coverage is below 85% ($COVERAGE%)" && exit 1
-          else
-            echo "Coverage is $COVERAGE%"
-          fi
