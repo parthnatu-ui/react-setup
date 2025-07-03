@@ -5,14 +5,14 @@ import '@testing-library/jest-dom';
 describe('main.tsx', () => {
   test('renders App component without crashing', async () => {
     // Create a root div for rendering
-    // const root = document.createElement('div');
-    // root.id = 'root';
-    // document.body.appendChild(root);
+    const root = document.createElement('div');
+    root.id = 'root';
+    document.body.appendChild(root);
 
-    // // Dynamically import and execute main.tsx using an absolute path
-    // await import('./main.tsx');
+    // Dynamically import and execute main.tsx using an absolute path
+    await import('./main.tsx');
 
-    // // Clean up
-    // document.body.removeChild(root);
+    // Clean up
+    document.body.removeChild(root);
   });
 });
