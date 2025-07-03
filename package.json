@@ -32,7 +32,6 @@
     "typescript-eslint": "^8.34.1",
     "vite": "^7.0.0",
     "vitest": "^3.2.4",
-    "@types/jest": "^29.5.11",
-    "@types/testing-library__jest-dom": "^5.14.10"
+    "@types/jest": "^29.5.11"
   }
 }
