@@ -1,0 +1,27 @@
+{
+  "name": "cbf-ui",
+  "version": "1.0.0",
+  "description": "A production-like React application scaffold.",
+  "main": "src/index.tsx",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo 'No test specified' && exit 0"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.9.36",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^4.1.2",
+    "vite": "^5.2.0",
+    "@vitejs/plugin-react": "^4.2.0"
+  },
+  "homepage": ".",
+  "license": "MIT",
+  "proxy": "http://localhost:8000"
+}
