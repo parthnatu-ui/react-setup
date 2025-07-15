@@ -3,11 +3,8 @@ name: Sample 2 Workflow
 on:
   workflow_run:
     workflows: ["Sample 1 Workflow"]
-    types:
-      - completed
-    branches:
-      - testing-github-actions # Keep this for direct pushes
-      - main                   # <<< ADD THIS LINE! This will catch runs of Sample 1 that are part of a PR to 'main'.
+    types: [completed]
+    branches: [testing-github-actions, main] # Keep this for direct pushes
 
 jobs:
   sample2_job:
