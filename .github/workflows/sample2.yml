@@ -8,8 +8,6 @@ on:
 
 jobs:
   sample2_job:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }} 
-    # This condition correctly ensures sample1 succeeded.
     runs-on: ubuntu-latest
     steps:
       - name: Echo Sample 2

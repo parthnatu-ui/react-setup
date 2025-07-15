@@ -6,7 +6,7 @@ on:
       - testing-github-actions
   pull_request:
     branches:
-      - main
+      - testing-github-actions
 
 jobs:
   sample1_job:
