@@ -1,58 +1,58 @@
-# Name of the workflow
-name: React CI/CD Workflow
+# # Name of the workflow
+# name: React CI/CD Workflow
 
-# Define when the workflow should run
-on:
-  push:
-    branches:
-      - main # Trigger on pushes to the 'main' branch
-      - develop # Trigger on pushes to the 'develop' branch
-  pull_request:
-    branches:
-      - main
-      - develop
-  workflow_dispatch: # Allows manual triggering of the workflow from the GitHub UI
+# # Define when the workflow should run
+# on:
+#   push:
+#     branches:
+#       - main # Trigger on pushes to the 'main' branch
+#       - develop # Trigger on pushes to the 'develop' branch
+#   pull_request:
+#     branches:
+#       - main
+#       - develop
+#   workflow_dispatch: # Allows manual triggering of the workflow from the GitHub UI
 
-# Define the jobs to be executed as part of this workflow
-jobs:
-  build_and_test: # Unique identifier for this job
-    name: Build and Test React App # Display name for the job
-    runs-on: ubuntu-latest # Specifies the type of runner (virtual machine) to use
+# # Define the jobs to be executed as part of this workflow
+# jobs:
+#   build_and_test: # Unique identifier for this job
+#     name: Build and Test React App # Display name for the job
+#     runs-on: ubuntu-latest # Specifies the type of runner (virtual machine) to use
 
-    steps: # A sequence of tasks to be executed in this job
-      - name: Checkout Repository # Step 1: Get the code from the repository
-        uses: actions/checkout@v4 # Uses a pre-built action to clone the repository
+#     steps: # A sequence of tasks to be executed in this job
+#       - name: Checkout Repository # Step 1: Get the code from the repository
+#         uses: actions/checkout@v4 # Uses a pre-built action to clone the repository
 
-      - name: Set up Node.js # Step 2: Set up Node.js environment
-        uses: actions/setup-node@v4 # Uses a pre-built action to set up Node.js
-        with:
-          node-version: '20.x' # Specify the Node.js version to use (e.g., '18', '20.x', or 'lts/*')
-          cache: 'npm' # Caches npm dependencies to speed up subsequent runs
-          cache-dependency-path: '**/package-lock.json' # Specifies the lock file for caching
+#       - name: Set up Node.js # Step 2: Set up Node.js environment
+#         uses: actions/setup-node@v4 # Uses a pre-built action to set up Node.js
+#         with:
+#           node-version: '20.x' # Specify the Node.js version to use (e.g., '18', '20.x', or 'lts/*')
+#           cache: 'npm' # Caches npm dependencies to speed up subsequent runs
+#           cache-dependency-path: '**/package-lock.json' # Specifies the lock file for caching
 
-      - name: Install Dependencies # Step 3: Install project dependencies
-        run: npm ci # 'npm ci' is recommended for CI/CD as it's faster and more reliable than 'npm install'
+#       - name: Install Dependencies # Step 3: Install project dependencies
+#         run: npm ci # 'npm ci' is recommended for CI/CD as it's faster and more reliable than 'npm install'
 
-      - name: Run Tests and Lint in Parallel # Step 4: Run unit tests and linter (if any)
-        run:  |
-          npm run lint &
-          LINT_PID=$! # Capture the PID of the linting process 
-          npm test # Executes the 'test' script defined in your package.json
-          wait $LINT_PID 
-          # Wait for the linting process to finish before proceeding 
-        env: # Optional: Define environment variables specific to this step
-          CI: true # Often used in React projects to prevent interactive watch mode during tests
+#       - name: Run Tests and Lint in Parallel # Step 4: Run unit tests and linter (if any)
+#         run:  |
+#           npm run lint &
+#           LINT_PID=$! # Capture the PID of the linting process 
+#           npm test # Executes the 'test' script defined in your package.json
+#           wait $LINT_PID 
+#           # Wait for the linting process to finish before proceeding 
+#         env: # Optional: Define environment variables specific to this step
+#           CI: true # Often used in React projects to prevent interactive watch mode during tests
 
-      - name: Build React App # Step 5: Build the React application for production
-        run: npm run build # Executes the 'build' script defined in your package.json
+#       - name: Build React App # Step 5: Build the React application for production
+#         run: npm run build # Executes the 'build' script defined in your package.json
 
-      - name: Archive Production Build # Step 6: Store the built artifact for later use (e.g., deployment)
-        uses: actions/upload-artifact@v4 # Uses a pre-built action to upload build artifacts
-        with:
-          name: react-app-build # Name of the artifact
-          path: build # Path to the build directory (usually 'build' or 'dist' for React apps)
+#       - name: Archive Production Build # Step 6: Store the built artifact for later use (e.g., deployment)
+#         uses: actions/upload-artifact@v4 # Uses a pre-built action to upload build artifacts
+#         with:
+#           name: react-app-build # Name of the artifact
+#           path: build # Path to the build directory (usually 'build' or 'dist' for React apps)
 
-      - name: Run Coverage
-        run: |
-          npm install --save-dev vitest @vitest/coverage-v8
-          npx vitest run --coverage
+#       - name: Run Coverage
+#         run: |
+#           npm install --save-dev vitest @vitest/coverage-v8
+#           npx vitest run --coverage
