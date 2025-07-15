@@ -1,0 +1,17 @@
+name: Sample 2 Workflow
+
+on:
+  workflow_run:
+    workflows: ["Sample 1 Workflow"]
+    types:
+      - completed
+    branches:
+      - testing-github-actions
+
+jobs:
+  sample2_job:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Sample 2
+        run: echo "This is Sample 2 Workflow running after successful completion of Sample 1."

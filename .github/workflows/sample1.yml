@@ -1,0 +1,16 @@
+name: Sample 1 Workflow
+
+on:
+  push:
+    branches:
+      - testing-github-actions
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  sample1_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Sample 1
+        run: echo "This is Sample 1 Workflow running on push or PR to main."
