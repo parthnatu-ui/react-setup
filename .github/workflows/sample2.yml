@@ -1,0 +1,14 @@
+name: Sample 2 Workflow
+
+on:
+  workflow_run:
+    workflows: [Sample 1 Workflow]
+    types: [completed]
+    branches: [testing-github-actions, main] # Keep this for direct pushes
+
+jobs:
+  sample2_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Sample 2
+        run: echo "This is sample 2 workflow running after sample 1 workflow completion. Testing for permissions"
