@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - testing-github-actions
+      - main # Keep this for direct pushes
   pull_request:
     branches:
       - testing-github-actions
+      - main
 
 jobs:
   sample1_job:
