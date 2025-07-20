@@ -6,11 +6,11 @@ on:
       - testing-github-actions
   pull_request:
     branches:
-      - main
+      - testing-github-actions
 
 jobs:
   sample1_job:
     runs-on: ubuntu-latest
     steps:
       - name: Echo Sample 1
-        run: echo "This is Sample 1 Workflow running on push or PR to main."
+        run: echo "This is Sample 1 Workflow running on push or PR to main. Testing for permissions"
